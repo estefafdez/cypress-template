@@ -9,6 +9,7 @@
     "test": "QASE_REPORT=1 cypress run --env configFile=qa --record --key {CYPRESS_DASHBOARD_APIKEY} --parallel",
     "test:local": "cypress run --env configFile=local",
     "test:edge": "cypress run --env configFile=qa --browser edge --headless",
+    "test:lambdatest": "lambdatest-cypress run --env configFile=qa",
     "merge_reports": "mochawesome-merge --reportDir mochawesome-report > mochawesome-report/Final_Report.json",
     "generate_mochawesome_report": "marge mochawesome-report/Final_Report.json",
     "format": "prettier --config .prettierrc --write '**/*.ts'",

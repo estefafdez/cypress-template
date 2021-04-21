@@ -1,0 +1,11 @@
+{
+    "env": {
+        "name": "prod", 
+        "apiURL": "https://reqres.in",
+        "webURL": "https://www.seleniumeasy.com/test/"
+    },
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "cypress/config/reporter-config.json"
+    }
+}
