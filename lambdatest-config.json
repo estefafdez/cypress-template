@@ -1,7 +1,7 @@
 {
    "lambdatest_auth": {
       "username": "estefafdez",
-      "access_key": "jhfa5Q7BKocTcEbZjEGkb0eY9BqkS3Wja8slAjJOmsjYlTTDMU"
+      "access_key": "{LAMBDATEST_API_TOKEN}"
    },
    "browsers": [
       {
