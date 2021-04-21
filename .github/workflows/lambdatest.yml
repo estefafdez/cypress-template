@@ -34,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install lambdatest
+        run: npm install -g lambdatest-cypress-cli
+
       # Run all Cypress tests
       - name: Run the tests
         run: npm run test:lambdatest

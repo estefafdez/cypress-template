@@ -26,7 +26,7 @@
       "specs": "cypress/integration/*/*.spec.ts",
       "ignore_files": "",
       "npm_dependencies": {
-         "cypress": "6.1.0"
+         "cypress": "7.1.0"
       },
       "feature_file_suppport": false
    },
