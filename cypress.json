@@ -5,10 +5,6 @@
     "viewportHeight": 1080,
     "screenshotsFolder": "mochawesome-report/assets",
     "chromeWebSecurity": false,
-    "firefoxGcInterval": {
-        "runMode": null,
-        "openMode": null
-    },
     "retries": {
         "runMode": 2,
         "openMode": 0
