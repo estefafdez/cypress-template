@@ -8,21 +8,21 @@
          "browser": "Chrome",
          "platform": "Windows 10",
          "versions": [
-            "90.0"
+            "89.0"
          ]
       },
       {
          "browser": "Firefox",
          "platform": "Windows 10",
          "versions": [
-            "88.0"
+            "87.0"
          ]
       },
       {
          "browser": "Edge",
          "platform": "Windows 10",
          "versions": [
-            "90.0"
+            "89.0"
          ]
       }
    ],
