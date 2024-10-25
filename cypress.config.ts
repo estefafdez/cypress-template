@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import { plugins } from 'cypress/config/setup-node-events/plugins';
 import { mergeConfigWithConfigFromFile } from './cypress/config/setup-node-events/mergeConfigWithConfigFromFile';
 
 export default defineConfig({
@@ -21,10 +22,11 @@ export default defineConfig({
   watchForFileChanges: false,
   e2e: {
     testIsolation: true,
-    setupNodeEvents(on, config) {
+    async setupNodeEvents(on, config) {
       const newConfig = mergeConfigWithConfigFromFile(config);
-      console.info('\n> Cypress config:\n', newConfig);
-      return newConfig;
+      const pluginsConfig = await plugins(on, newConfig);
+      console.info('\n> Cypress config:\n', pluginsConfig);
+      return pluginsConfig;
     },
     specPattern: 'cypress/e2e/**/*.ts',
   },
