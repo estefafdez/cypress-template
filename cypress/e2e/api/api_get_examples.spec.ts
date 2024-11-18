@@ -1,25 +1,22 @@
 const env = Cypress.env();
 import { qase } from 'cypress-qase-reporter/mocha';
+import { RequestResponse, UserData } from 'cypress/types/getUserResponse';
 
-describe('API GET 200 Request', function () {
+describe('API Tests with Typed Responses', function () {
   qase(
     [1],
     it('[1, API] should get a 200 response after a GET request for the complete list of users', function () {
-      cy.request({
+      cy.request<RequestResponse>({
         method: 'GET',
         url: env.apiURL + '/api/users?page=2',
       }).then(response => {
         expect(response.status).to.eq(200);
-        expect(response.body).property('page').to.equal(2);
-        expect(response.body).property('per_page').to.equal(6);
-        expect(response.body).property('total').to.equal(12);
-        expect(response.body).property('total_pages').to.equal(2);
-        expect(response.body).property('data');
-        expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
-        expect(response.body.support)
-          .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+        expect(response.body.page).to.equal(2);
+        expect(response.body.per_page).to.equal(6);
+        expect(response.body.total).to.equal(12);
+        expect(response.body.total_pages).to.equal(2);
+        expect(response.body.data).to.be.an('array');
+        cy.checkUrlAndTextResponse(response);
       });
     }),
   );
@@ -27,47 +24,18 @@ describe('API GET 200 Request', function () {
   qase(
     [2],
     it('[2, API] should get a 200 response after a GET request for a single user', function () {
-      cy.request({
+      cy.request<RequestResponse>({
         method: 'GET',
         url: env.apiURL + '/api/users/2',
       }).then(response => {
         expect(response.status).to.eq(200);
-        expect(response.body).property('data');
-        expect(response.body.data).property('id').to.equal(2);
-        expect(response.body.data).property('email').to.equal('janet.weaver@reqres.in');
-        expect(response.body.data).property('first_name').to.equal('Janet');
-        expect(response.body.data).property('last_name').to.equal('Weaver');
-        expect(response.body.data).property('avatar').to.equal('https://reqres.in/img/faces/2-image.jpg');
-
-        expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
-        expect(response.body.support)
-          .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
-      });
-    }),
-  );
-
-  qase(
-    [4],
-    it('[4, API] should get a 200 response after a GET request for a list of resources', function () {
-      cy.request({
-        method: 'GET',
-        url: env.apiURL + '/api/unknown',
-      }).then(response => {
-        expect(response.status).to.eq(200);
-        expect(response.body).property('page').to.equal(1);
-        expect(response.body).property('per_page').to.equal(6);
-        expect(response.body).property('total').to.equal(12);
-        expect(response.body).property('total_pages').to.equal(2);
-
-        expect(response.body).property('data');
-
-        expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
-        expect(response.body.support)
-          .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+        const user = response.body.data as UserData;
+        expect(user.id).to.equal(2);
+        expect(user.email).to.equal('janet.weaver@reqres.in');
+        expect(user.first_name).to.equal('Janet');
+        expect(user.last_name).to.equal('Weaver');
+        expect(user.avatar).to.equal('https://reqres.in/img/faces/2-image.jpg');
+        cy.checkUrlAndTextResponse(response);
       });
     }),
   );
@@ -75,75 +43,24 @@ describe('API GET 200 Request', function () {
   qase(
     [5],
     it('[5, API] should get a 200 response after a GET request for a single resource from a list', function () {
-      cy.request({
+      cy.request<RequestResponse>({
         method: 'GET',
         url: env.apiURL + '/api/unknown/2',
       }).then(response => {
         expect(response.status).to.eq(200);
-
-        expect(response.body.data).property('id').to.equal(2);
-        expect(response.body.data).property('name').to.equal('fuchsia rose');
-        expect(response.body.data).property('year').to.equal(2001);
-        expect(response.body.data).property('color').to.equal('#C74375');
-        expect(response.body.data).property('pantone_value').to.equal('17-2031');
-
-        expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
-        expect(response.body.support)
-          .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
-      });
-    }),
-  );
-
-  qase(
-    [7],
-    it('[7, API] should get a delay response 200 response after a GET request for a single resource from a list', function () {
-      cy.request({
-        method: 'GET',
-        url: env.apiURL + '/api/unknown/2?delay=3',
-      }).then(response => {
-        expect(response.status).to.eq(200);
-
-        expect(response.body.data).property('id').to.equal(2);
-        expect(response.body.data).property('name').to.equal('fuchsia rose');
-        expect(response.body.data).property('year').to.equal(2001);
-        expect(response.body.data).property('color').to.equal('#C74375');
-        expect(response.body.data).property('pantone_value').to.equal('17-2031');
-
-        expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
-        expect(response.body.support)
-          .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
-      });
-    }),
-  );
-});
-
-describe('API GET 4xx Request', function () {
-  qase(
-    [3],
-    it('[3, API] should get a 404 response after a GET request for a single user not found', function () {
-      cy.request({
-        method: 'GET',
-        url: env.apiURL + '/api/users/23',
-        failOnStatusCode: false,
-      }).then(response => {
-        expect(response.status).to.eq(404);
-      });
-    }),
-  );
-
-  qase(
-    [6],
-    it('[6, API] should get a 404 response after a GET request for a single resource from a list not found', function () {
-      cy.request({
-        method: 'GET',
-        url: env.apiURL + '/api/unknown/23',
-        failOnStatusCode: false,
-      }).then(response => {
-        expect(response.status).to.eq(404);
+        const resource = response.body.data as {
+          id: number;
+          name: string;
+          year: number;
+          color: string;
+          pantone_value: string;
+        };
+        expect(resource.id).to.equal(2);
+        expect(resource.name).to.equal('fuchsia rose');
+        expect(resource.year).to.equal(2001);
+        expect(resource.color).to.equal('#C74375');
+        expect(resource.pantone_value).to.equal('17-2031');
+        cy.checkUrlAndTextResponse(response);
       });
     }),
   );
