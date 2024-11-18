@@ -16,10 +16,10 @@ describe('API GET 200 Request', function () {
         expect(response.body).property('total_pages').to.equal(2);
         expect(response.body).property('data');
         expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
+        expect(response.body.support).property('url').to.contain('https://contentcaddy.io?utm_source=reqres');
         expect(response.body.support)
           .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+          .to.equal('Tired of writing endless social media content? Let Content Caddy generate it for you.');
       });
     }),
   );
@@ -40,10 +40,10 @@ describe('API GET 200 Request', function () {
         expect(response.body.data).property('avatar').to.equal('https://reqres.in/img/faces/2-image.jpg');
 
         expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
+        expect(response.body.support).property('url').to.contain('https://contentcaddy.io?utm_source=reqres');
         expect(response.body.support)
           .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+          .to.equal('Tired of writing endless social media content? Let Content Caddy generate it for you.');
       });
     }),
   );
@@ -64,10 +64,10 @@ describe('API GET 200 Request', function () {
         expect(response.body).property('data');
 
         expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
+        expect(response.body.support).property('url').to.contain('https://contentcaddy.io?utm_source=reqres');
         expect(response.body.support)
           .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+          .to.equal('Tired of writing endless social media content? Let Content Caddy generate it for you.');
       });
     }),
   );
@@ -88,10 +88,10 @@ describe('API GET 200 Request', function () {
         expect(response.body.data).property('pantone_value').to.equal('17-2031');
 
         expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
+        expect(response.body.support).property('url').to.contain('https://contentcaddy.io?utm_source=reqres');
         expect(response.body.support)
           .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+          .to.equal('Tired of writing endless social media content? Let Content Caddy generate it for you.');
       });
     }),
   );
@@ -112,10 +112,10 @@ describe('API GET 200 Request', function () {
         expect(response.body.data).property('pantone_value').to.equal('17-2031');
 
         expect(response.body).property('support');
-        expect(response.body.support).property('url').to.equal('https://reqres.in/#support-heading');
+        expect(response.body.support).property('url').to.contain('https://contentcaddy.io?utm_source=reqres');
         expect(response.body.support)
           .property('text')
-          .to.equal('To keep ReqRes free, contributions towards server costs are appreciated!');
+          .to.equal('Tired of writing endless social media content? Let Content Caddy generate it for you.');
       });
     }),
   );
