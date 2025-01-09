@@ -5,6 +5,7 @@
     "lib": ["ES2022", "dom"],
     "types": ["node"],
     "typeRoots": ["./types", "./node_modules/@types"],
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noEmit": true,
     "strict": true,

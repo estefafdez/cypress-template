@@ -1,5 +1,5 @@
-import path from 'node:path';
 import fs from 'fs-extra';
+import path from 'node:path';
 
 /**
  * @description Method to get the configuration files for each environment.
@@ -9,8 +9,6 @@ const getConfigurationByFile = (file: string) => {
   const pathToConfigFile = path.resolve(__dirname, '../../config', `${file}.json`);
   return fs.readJsonSync(pathToConfigFile);
 };
-
-//'/Volumes/Seguridad/ProyectosQA/cypress-template/cypress/config/setup-node-events/cypress/config/local.json'
 
 export const mergeConfigWithConfigFromFile = (config: Cypress.PluginConfigOptions): Cypress.PluginConfigOptions => {
   // Accept a configFile value or use qa by default
@@ -25,7 +23,7 @@ export const mergeConfigWithConfigFromFile = (config: Cypress.PluginConfigOption
   const newConfig = {
     ...config,
     ...restConfigFromFile,
-    env: { ...config.env, ...envFromFile }
+    env: { ...config.env, ...envFromFile },
   };
 
   return newConfig;
