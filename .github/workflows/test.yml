@@ -45,14 +45,14 @@ jobs:
         run: npm run test
 
       # Upload artifacts with the tests results
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: report
           path: report
 
       # Upload artifacts with the tests results
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: debugger
