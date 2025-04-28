@@ -12,6 +12,9 @@ describe('API PATCH 200 Request', function () {
           name: 'morpheus',
           job: 'zion resident',
         },
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(200);
         expect(response.body).property('name').to.equal('morpheus');
