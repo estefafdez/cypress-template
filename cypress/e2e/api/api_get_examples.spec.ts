@@ -9,6 +9,9 @@ describe('API Tests with Typed Responses', function () {
       cy.request<RequestResponse>({
         method: 'GET',
         url: env.apiURL + '/api/users?page=2',
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(200);
         expect(response.body.page).to.equal(2);
@@ -27,6 +30,9 @@ describe('API Tests with Typed Responses', function () {
       cy.request<RequestResponse>({
         method: 'GET',
         url: env.apiURL + '/api/users/2',
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(200);
         const user = response.body.data as UserData;
@@ -46,6 +52,9 @@ describe('API Tests with Typed Responses', function () {
       cy.request<RequestResponse>({
         method: 'GET',
         url: env.apiURL + '/api/unknown/2',
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(200);
         const resource = response.body.data as {

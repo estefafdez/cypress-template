@@ -8,6 +8,9 @@ describe('API DELETE 200 Request', function () {
       cy.request({
         method: 'DELETE',
         url: env.apiURL + '/api/users/2',
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(204);
       });

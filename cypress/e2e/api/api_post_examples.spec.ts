@@ -35,6 +35,9 @@ describe('API POST 200 Request', function () {
           name: user1.name,
           job: user1.job,
         },
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(201);
         expect(response.body).property('name').to.equal('Estefania');
@@ -55,6 +58,9 @@ describe('API POST 200 Request', function () {
           email: user1.email,
           password: user1.password,
         },
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
       }).then(response => {
         expect(response.status).to.eq(200);
         expect(response.body).have.property('id');
@@ -72,6 +78,9 @@ describe('API POST 200 Request', function () {
         body: {
           email: user2.email,
           password: user2.password,
+        },
+        headers: {
+          'x-api-key': 'reqres-free-v1',
         },
       }).then(response => {
         expect(response.status).to.eq(200);
@@ -91,6 +100,9 @@ describe('API POST 4xx Request', function () {
         body: {
           email: user3.email,
         },
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
         failOnStatusCode: false,
       }).then(response => {
         expect(response.status).to.eq(400);
@@ -107,6 +119,9 @@ describe('API POST 4xx Request', function () {
         url: env.apiURL + '/api/login',
         body: {
           email: user4.email,
+        },
+        headers: {
+          'x-api-key': 'reqres-free-v1',
         },
         failOnStatusCode: false,
       }).then(response => {
