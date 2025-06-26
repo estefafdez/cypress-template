@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^24.0.4",
-    "npm-check-updates": "^18.0.1"
+    "@types/node": "^24.0.4"
   }
 }
