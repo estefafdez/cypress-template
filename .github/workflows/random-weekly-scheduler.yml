@@ -1,0 +1,45 @@
+name: Cypress Tests
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  schedule:
+    # Runs every day at 3 AM UTC
+    - cron: "0 3 * * *"
+
+jobs:
+  check-and-run:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - name: Check if should run tests this week
+        id: should_run
+        run: |
+          # Get the week number of the year
+          WEEK_NUMBER=$(date +%V)
+          
+          # Get the day of the week (1=Monday, 7=Sunday)
+          DAY_OF_WEEK=$(date +%u)
+          
+          # Use week number as seed to generate a random day (1-7)
+          # This ensures the same day is chosen throughout the week
+          RANDOM_DAY=$((($WEEK_NUMBER % 7) + 1))
+          
+          echo "Week number: $WEEK_NUMBER"
+          echo "Current day: $DAY_OF_WEEK"
+          echo "Random day for this week: $RANDOM_DAY"
+          
+          # If current day matches the random day of the week
+          if [ "$DAY_OF_WEEK" -eq "$RANDOM_DAY" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "✅ Today is the chosen day for tests this week!"
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+            echo "⏭️ Not the chosen day for tests this week."
+          fi
+
+  trigger-tests:
+    needs: check-and-run
+    if: needs.check-and-run.outputs.should_run == 'true'
+    uses: ./.github/workflows/test.yml
