@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^24.5.2"
+    "@types/node": "^26.6.4"
   }
 }
