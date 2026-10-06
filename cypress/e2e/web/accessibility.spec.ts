@@ -1,6 +1,8 @@
 import 'cypress-axe';
 
-describe('Accessibility Tests', function () {
+// Skipped like the other web specs: the demo site (demo.seleniumeasy.com) no longer resolves.
+// Point `webURL` to a live site and remove `.skip` to run it.
+describe.skip('Accessibility Tests', function () {
   beforeEach(function () {
     cy.visitHomePage();
     cy.injectAxe();

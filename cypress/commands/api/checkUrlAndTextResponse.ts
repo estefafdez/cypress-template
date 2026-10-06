@@ -9,11 +9,10 @@ declare global {
 }
 
 /**
- * @description  Method to check the URL and text response from the GET request
+ * @description  Method to check that the GET response includes the support URL and text
  */
 export const checkUrlAndTextResponse = (response: Cypress.Response<RequestResponse>): any => {
-  expect(response.body.support).property('url').to.contain('https://contentcaddy.io?utm_source=reqres');
-  expect(response.body.support)
-    .property('text')
-    .to.equal('Tired of writing endless social media content? Let Content Caddy generate it for you.');
+  // The sponsor message in `support` is rotated by the API, so only check its shape.
+  expect(response.body.support).property('url').to.be.a('string').and.not.be.empty;
+  expect(response.body.support).property('text').to.be.a('string').and.not.be.empty;
 };

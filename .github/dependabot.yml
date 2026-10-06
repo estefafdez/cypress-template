@@ -8,3 +8,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # Cypress loads the TypeScript JS API, which TypeScript 7 does not ship.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
