@@ -7,7 +7,7 @@
     "verify": "cypress verify",
     "open": "npm run compile && ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 cypress open --env configFile=local",
     "test": "npm run compile && QASE_REPORT=1 ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 cypress run --env configFile=qa --record --key {CYPRESS_DASHBOARD_APIKEY} --parallel",
-    "test:local": "ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 cypress run --env configFile=local --spec 'cypress/integration/api/api_delete_examples.spec.ts'",
+    "test:local": "ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 cypress run --env configFile=local --spec 'cypress/e2e/api/api_delete_examples.spec.ts'",
     "test:edge": "ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 cypress run --env configFile=qa --browser edge --headless",
     "compile": "tsc -p tsconfig.json",
     "format": "prettier --config .prettierrc --write '**/*.ts'",
