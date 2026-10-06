@@ -6,12 +6,6 @@ Github Actions build results:
 
 ![End-to-end tests with Cypress](https://github.com/estefafdez/cypress-template/workflows/Test/badge.svg)
 
-## SonarCloud analysis:
-
-https://sonarcloud.io/dashboard?id=estefafdez_cypress-template
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=estefafdez_cypress-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=estefafdez_cypress-template)
-
 ## Test Plan of this project.
 
 Every test plan defined for this project will be added into the Qase tool.
