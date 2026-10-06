@@ -40,8 +40,18 @@ jobs:
         run: npm run verify
 
       # Run all Cypress tests
+      # Dependabot PRs cannot read the repository secrets, so there is no Cypress
+      # Dashboard key to record with. Run the specs locally in that case.
       - name: Run the tests
-        run: npm run test
+        env:
+          CYPRESS_DASHBOARD_APIKEY: ${{ secrets.CYPRESS_DASHBOARD_APIKEY }}
+        run: |
+          if [ -n "$CYPRESS_DASHBOARD_APIKEY" ]; then
+            npm run test
+          else
+            npm run compile
+            ELECTRON_EXTRA_LAUNCH_ARGS=--remote-debugging-port=9222 npx cypress run --env configFile=qa
+          fi
 
       # Upload artifacts with the tests results
       - uses: actions/upload-artifact@v4
