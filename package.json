@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/estefafdez/cypress-template#readme",
   "devDependencies": {
-    "axe-core": "^4.14.0",
+    "axe-core": "^4.14.1",
     "cypress": "16.3.0",
     "cypress-axe": "^1.7.0",
     "cypress-diff": "^0.0.6",
